@@ -1,0 +1,500 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #e5f0ff;
+  color: #0f172a;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+
+  /* Concept-themed background: campus corridor with lockers / items */
+  background-image:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.2), transparent 55%),
+    url("./assets/lost-found-hallway.jpg");
+  background-size: auto, auto, cover;
+  background-position: top left, bottom right, center;
+  background-repeat: no-repeat;
+}
+
+.auth-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.45), transparent 55%),
+              linear-gradient(to bottom, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.85));
+  pointer-events: none;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(15, 23, 42, 0.88);
+  border-radius: 16px;
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.75);
+  padding: 32px 32px 28px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(14px);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #e5e7eb;
+  margin: 0 0 4px;
+}
+
+.auth-subtitle {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.12);
+  color: #bfdbfe;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.brand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.form-control {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #e5e7eb;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.9),
+              0 0 0 4px rgba(56, 189, 248, 0.25);
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+.form-control::placeholder {
+  color: #6b7280;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.text-danger {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: 4px;
+}
+
+.text-success {
+  font-size: 14px;
+  color: #059669;
+  font-weight: 600;
+}
+
+.text-muted {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* Auth footer text - ensure visible on dark card */
+.auth-footer .auth-footer-prompt {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: none;
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #38bdf8, #4f46e5);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 13px 28px rgba(56, 189, 248, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 7px 18px rgba(15, 23, 42, 0.9);
+}
+
+.btn-secondary {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  width: 100%;
+  padding: 9px 14px;
+  margin-top: 8px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(15, 23, 42, 0.98);
+  border-color: #e5e7eb;
+}
+
+.auth-footer {
+  margin-top: 18px;
+  border-top: 1px solid rgba(148, 163, 184, 0.4);
+  padding-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Menus (Student/Admin) */
+.menu-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+  padding-bottom: 24px;
+}
+
+.menu-header-strip {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.student-header {
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+}
+
+.admin-header {
+  background: linear-gradient(135deg, #dcfce7, #bfdbfe);
+}
+
+.menu-header-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.menu-navbar {
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(191, 219, 254, 0.9);
+}
+
+.menu-navbar .nav-link,
+.menu-navbar .dropdown-item {
+  font-size: 14px;
+}
+
+.menu-navbar .nav-link {
+  font-weight: 500;
+  color: #0f172a !important;
+}
+
+.menu-navbar .nav-link:hover,
+.menu-navbar .dropdown-item:hover {
+  background-color: #eff6ff;
+}
+
+.menu-navbar .dropdown-menu {
+  border-radius: 12px;
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.15);
+  padding: 4px 0;
+}
+
+.menu-navbar .dropdown-item {
+  padding: 6px 14px;
+}
+
+.menu-logout-btn {
+  font-weight: 600;
+  color: #dc2626 !important;
+}
+
+/* Form pages (Lost/Found Item Registration) */
+.content-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+  padding: 24px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.content-card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  padding: 28px 28px 24px;
+  border: 1px solid rgba(191, 219, 254, 0.8);
+}
+
+.content-card .page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin: 0 0 20px;
+  letter-spacing: 0.02em;
+}
+
+.content-card .form-label,
+.content-card label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.content-card .form-control {
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  color: #111827;
+}
+
+.content-card .form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.8), 0 0 0 4px rgba(191, 219, 254, 0.6);
+  background-color: #ffffff;
+}
+
+.content-card .form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.content-card .btn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.content-card .btn-primary {
+  flex: 1;
+  min-width: 100px;
+}
+
+.btn-success {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.4);
+}
+
+.btn-warning {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #d97706, #b45309);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-warning:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
+}
+
+.content-card .text-danger,
+.content-card .text-success {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.content-card .text-success {
+  color: #059669;
+}
+
+/* Report / List pages */
+.report-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+  padding: 24px 16px;
+}
+
+.report-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  padding: 24px;
+  border: 1px solid rgba(191, 219, 254, 0.8);
+  overflow-x: auto;
+}
+
+.report-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.report-table thead {
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+}
+
+.report-table th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #0f172a;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.report-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.report-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.report-table .status-found,
+.report-table .status-returned {
+  color: #059669;
+  font-weight: 600;
+}
+
+.report-table .status-not-found,
+.report-table .status-not-returned {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.report-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-outline {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn-outline:hover {
+  background: #2563eb;
+  color: #fff;
+}
